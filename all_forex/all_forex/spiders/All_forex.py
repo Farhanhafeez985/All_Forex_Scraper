@@ -40,14 +40,25 @@ class AllForexSpider(scrapy.Spider):
             'Leverage': response.xpath("//p[contains(b/text(),'Leverage')]/b/following-sibling::text()").get(),
             'Established Year': response.xpath(
                 "//p[contains(b/text(),'Established Year')]/b/following-sibling::text()").get(),
+
+            'Regulators': response.xpath("//td[contains(text(),'Regulators')]/following-sibling::td/text()").get(),
+            'Country': response.xpath("//td[contains(text(),'Country')]/following-sibling::td/text()").get(),
+
             'Base Currencies': response.xpath(
                 "//td[contains(text(),'Base Currencies')]/following-sibling::td/text()").get(),
             'Type Of Brokers': response.xpath(
                 "//td[contains(text(),'Type Of Brokers')]/following-sibling::td/text()").get(),
             'Trading Platform': response.xpath(
                 "//td[contains(text(),'Trading Platform')]/following-sibling::td/text()").get(),
+            'Established_Year': response.xpath(
+                "//td[contains(text(),'Established Year')]/following-sibling::td/text()").get(),
             'Website Language': response.xpath(
                 "//td[contains(text(),'Website Language')]/following-sibling::td/text()").get(),
+            'US_Clients': self.get_boolen_value(
+                response.xpath("//td[contains(text(),'US Clients')]/following-sibling::td/i/@class").get()),
+            'Maximum Leverage': response.xpath(
+                "//td[contains(text(),'Maximum Leverage')]/following-sibling::td/text()").get(),
+
             'Mini Account': self.get_boolen_value(
                 response.xpath("//td[contains(text(),'Mini Account')]/following-sibling::td/i/@class").get()),
 
@@ -57,6 +68,14 @@ class AllForexSpider(scrapy.Spider):
                 response.xpath("//td[contains(text(),'Segregated Accounts')]/following-sibling::td/i/@class").get()),
             'Free Demo Accounts': self.get_boolen_value(
                 response.xpath("//td[contains(text(),'Free Demo Accounts')]/following-sibling::td/i/@class").get()),
+            'Managed Accounts': self.get_boolen_value(
+                response.xpath("//td[contains(text(),'Managed Accounts')]/following-sibling::td/i/@class").get()),
+            'Pro Account': self.get_boolen_value(
+                response.xpath("//td[contains(text(),'Pro Account')]/following-sibling::td/i/@class").get()),
+
+            'Minimum Deposit': ''.join(response.xpath(
+                "//td[contains(text(),'Minimum Deposit')]/following-sibling::td/text()").extract()),
+
             'Islamic Account': self.get_boolen_value(
                 response.xpath("//td[contains(text(),'Islamic Account')]/following-sibling::td/i/@class").get()),
 
