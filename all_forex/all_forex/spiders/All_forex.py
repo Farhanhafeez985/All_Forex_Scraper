@@ -125,6 +125,7 @@ class AllForexSpider(scrapy.Spider):
                 response.xpath("//td[contains(text(),'Commission')]/following-sibling::td/i/@class").get()),
             'Fixed Spreads': self.get_boolen_value(
                 response.xpath("//td[contains(text(),'Fixed Spreads')]/following-sibling::td/i/@class").get()),
+            'Url': response.url
         }
 
     def get_boolen_value(self, class_name):
